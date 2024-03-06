@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .success {
+        background-color: #d4edda;
+        color: #155724;
+        border-color: #c3e6cb;
+    }
+    .error{
+        list-style-type:none ;
+        color:blue;
+        margin:0;
+        padding:0;
+    }
+    .error ul li{
+        list-style-type:none;
+    }
+    /* Success message */
+   
+
+</style>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"
+            
+            {% endif %}>
+               
+            
+            {{ message }}
+
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+    <form action="" method="POST" novalidate>
+        {% csrf_token %}
+        
+       {{form}}
+       
+        <input type="submit" name="" id="" vlaue="submit">
+    </form>
+    
+</body>
+</html>
