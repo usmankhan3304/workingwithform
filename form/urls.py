@@ -20,5 +20,6 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('formapi/',include('formapi.urls')),
-    path('modelform/',include('modelform.urls'))
+    path('modelform/',include('modelform.urls')),
+    path('reg/',include('enroll.urls')),
 ]
