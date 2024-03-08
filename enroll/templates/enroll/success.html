@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>Welcome {{request.user}}</h1>
+   
+    <div class="container">
+        UserList
+        <br>
+        {% if  users !=  None %}
+        {% for user in users  %}
+       <a href="{% url "user_details" user.id %}">{{user.username}}</a>
+       <br> 
+       {% endfor %}
+        {% endif %}
+        {% for message in messages %}
+                <div class="alert alert-danger">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            {% endfor %}
+        </div>
+        <div>
+    {% comment %} <h1>Welcome, {{ user.username }}</h1>
+    <!-- You can display any additional user information here -->
+    <p>Email: {{ user.email }}</p> {% endcomment %}
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {{ form.non_field_errors }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+        {% for field in form %}
+       
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }} {{field.errors|striptags}}
+                
+                
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Update!
+        </button>
+    <a href="{% url 'logout' %}">LOGout</a>
+    <a href="{% url 'changepassword' %}">changepassword</a>
+    <a href="{% url 'changepass' %}">changepassword1</a>
+</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
